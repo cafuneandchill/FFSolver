@@ -1,4 +1,6 @@
+from abc import ABC
 from enum import Enum
+from typing import Optional
 
 
 class Suit(Enum):
@@ -13,7 +15,17 @@ class SuitColor(Enum):
     BLACK = 1
 
 
-class MinorArcanaCard:
+class Card(ABC):
+    @property
+    def overlaying_top(self) -> Optional["Card"]:
+        raise NotImplementedError()
+
+    @property
+    def overlaying_bottom(self) -> Optional["Card"]:
+        raise NotImplementedError()
+
+
+class MinorArcanaCard(Card):
     def __init__(self, rank: int, suit: Suit):
         """
 
@@ -27,7 +39,7 @@ class MinorArcanaCard:
         self.suit = suit
 
 
-class MajorArcanaCard:
+class MajorArcanaCard(Card):
     def __init__(self, rank: int):
         if rank not in range(0, 21):
             raise ValueError("Rank out of range")
