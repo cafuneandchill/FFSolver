@@ -52,8 +52,11 @@ class MinorArcanaCard(Card):
 
 
 class MajorArcanaCard(Card):
+
+    full_suite_range = range(0, 22)
+
     def __init__(self, rank: int):
-        if rank not in range(0, 21):
+        if rank not in MajorArcanaCard.full_suite_range:
             raise ValueError("Rank out of range")
 
         self.rank = rank
