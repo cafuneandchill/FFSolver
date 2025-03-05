@@ -36,8 +36,12 @@ class Card(ABC):
         raise NotImplementedError()
 
     @property
-    def overlaying_bottom(self) -> Optional["Card"]:
-        raise NotImplementedError()
+    def rank(self):
+        return self.rank
+
+    @rank.setter
+    def rank(self, val):
+        self.rank = val
 
 
 class MinorArcanaCard(Card):
