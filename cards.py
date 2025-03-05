@@ -2,6 +2,8 @@ from abc import ABC
 from enum import Enum
 from typing import Optional
 
+from game_state import GameState
+
 
 class Suit(Enum):
     SWORDS = 0
@@ -31,9 +33,11 @@ class MinorRank(Enum):
     KING = 13
 
 class Card(ABC):
-    @property
-    def overlaying_top(self) -> Optional["Card"]:
-        raise NotImplementedError()
+    def overlaying_top(self, state: GameState) -> Optional["Card"]:
+        raise NotImplementedError()  # TODO
+
+    def overlaying_bottom(self, state: GameState) -> Optional["Card"]:
+        raise NotImplementedError()  # TODO
 
     @property
     def rank(self):
