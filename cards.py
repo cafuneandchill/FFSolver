@@ -15,6 +15,21 @@ class SuitColor(Enum):
     BLACK = 1
 
 
+class MinorRank(Enum):
+    ACE = 1
+    TWO = 2
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+    SIX = 6
+    SEVEN = 7
+    EIGHT = 8
+    NINE = 9
+    TEN = 10
+    JACK = 11
+    QUEEN = 12
+    KING = 13
+
 class Card(ABC):
     @property
     def overlaying_top(self) -> Optional["Card"]:
@@ -26,15 +41,12 @@ class Card(ABC):
 
 
 class MinorArcanaCard(Card):
-    def __init__(self, rank: int, suit: Suit):
+    def __init__(self, rank: MinorRank, suit: Suit):
         """
 
-        :param rank: Card rank, ranging from 1 to 13; `A` = 1, `J` = 11, `Q` = 12, `K` = 13
+        :param rank: Card rank, from Ace to King
         :param suit: Card suit (swords, staves, cups, coins)
         """
-        if rank not in range(1, 13):
-            raise ValueError("Rank out of range")
-
         self.rank = rank
         self.suit = suit
 
